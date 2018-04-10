@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.JobDao" >
+
+
+  <select id="queryJob" resultType="com.example.demo.entity.Job">
+    SELECT *
+    FROM Job
+  </select>
+  <select id="queryJobById" resultType="com.example.demo.entity.Job">
+    SELECT *
+    FROM Job
+    WHERE
+    id=#{id}
+  </select>
+  <insert id="insertJob" useGeneratedKeys="true" keyProperty="id"
+          keyColumn="id" parameterType="com.example.demo.entity.Job">
+    INSERT INTO
+    Job(name,responsibility,require,number,education,major_id)
+    VALUES
+    (#{name},#{responsibility},#{require},#{number},#{education},#{major_id})
+  </insert>
+  <update id="updateJob" parameterType="com.example.demo.entity.Job">
+    update Job
+    <set>
+      <if test="name != null">name=#{name},</if>
+      <if test="responsibility != null">responsibility=#{responsibility},</if>
+      <if test="require != null">require=#{require},</if>
+      <if test="number != null">number=#{number},</if>
+      <if test="education != education">education=#{education},</if>
+      <if test="major_id != major_id">major_id=#{major_id}</if>
+    </set>
+    where id=#{id}
+  </update>
+  <delete id="deleteJob">
+    DELETE FROM
+    Job
+    WHERE
+    id =
+    #{id}
+  </delete>
+</mapper>

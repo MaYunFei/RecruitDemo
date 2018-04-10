@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.SchoolDao" >
+
+
+  <select id="querySchool" resultType="com.example.demo.entity.School">
+    SELECT *
+    FROM School
+  </select>
+  <select id="querySchoolById" resultType="com.example.demo.entity.School">
+    SELECT *
+    FROM School
+    WHERE
+    id=#{id}
+  </select>
+  <insert id="insertSchool" useGeneratedKeys="true" keyProperty="id"
+          keyColumn="id" parameterType="com.example.demo.entity.School">
+    INSERT INTO
+    School(quantity,introduce,adress,number,teacher)
+    VALUES
+    (#{quantity},#{introduce},#{adress},#{number},#{teacher})
+  </insert>
+  <update id="updateSchool" parameterType="com.example.demo.entity.School">
+    update School
+    <set>
+      <if test="quantity != null">quantity=#{quantity},</if>
+      <if test="introduce != null">introduce=#{introduce},</if>
+      <if test="adress != null">adress=#{adress},</if>
+      <if test="number != null">number=#{number},</if>
+      <if test="teacher != teacher">teacher=#{teacher}</if>
+    </set>
+    where id=#{id}
+  </update>
+  <delete id="deleteSchool">
+    DELETE FROM
+    School
+    WHERE
+    id =
+    #{id}
+  </delete>
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.StudentDao" >
+
+  <select id="queryStudent" resultType="com.example.demo.entity.Student">
+    SELECT *
+    FROM Student
+  </select>
+  <select id="queryStudentById" resultType="com.example.demo.entity.Student">
+    SELECT *
+    FROM Student
+    WHERE
+    id=#{id}
+  </select>
+  <insert id="insertStudent" useGeneratedKeys="true" keyProperty="id"
+          keyColumn="id" parameterType="com.example.demo.entity.Student">
+    INSERT INTO
+    Student(name,sex,ago,major_id,school_id,experience,enjlish,andress)
+    VALUES
+    (#{name},#{sex},#{ago},#{major_id},#{school_id},#{experience},#{enjlish},#{andress})
+  </insert>
+  <update id="updateStudent" parameterType="com.example.demo.entity.Student">
+    update Student
+    <set>
+      <if test="name != null">name=#{name},</if>
+      <if test="sex != null">sex=#{sex},</if>
+      <if test="ago != null">ago=#{ago},</if>
+      <if test="major_id != null">major_id=#{major_id},</if>
+      <if test="school_id != school_id">school_id=#{school_id},</if>
+      <if test="experience != experience">experience=#{experience},</if>
+      <if test="enjlish != enjlish">enjlish=#{enjlish},</if>
+      <if test="andress != andress">andress=#{andress}</if>
+    </set>
+    where id=#{id}
+  </update>
+  <delete id="deleteStudent">
+    DELETE FROM
+    Student
+    WHERE
+    id =
+    #{id}
+  </delete>
+</mapper>

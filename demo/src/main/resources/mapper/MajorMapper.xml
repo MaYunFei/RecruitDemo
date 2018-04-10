@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.MajorDao" >
+
+
+  <select id="queryMajor" resultType="com.example.demo.entity.Major">
+    SELECT *
+    FROM Major
+  </select>
+  <select id="queryMajorById" resultType="com.example.demo.entity.Major">
+    SELECT *
+    FROM Major
+    WHERE
+    id=#{id}
+  </select>
+  <insert id="insertMajor" useGeneratedKeys="true" keyProperty="id"
+          keyColumn="id" parameterType="com.example.demo.entity.Major">
+    INSERT INTO
+    Major(name,introduce,academy,number,teacher)
+    VALUES
+    (#{name},#{introduce},#{academy},#{number},#{teacher})
+  </insert>
+  <update id="updateMajor" parameterType="com.example.demo.entity.Major">
+    update Major
+    <set>
+      <if test="name != null">name=#{name},</if>
+      <if test="introduce != null">introduce=#{introduce},</if>
+      <if test="academy != null">academy=#{academy},</if>
+      <if test="number != null">number=#{number},</if>
+      <if test="teacher != teacher">teacher=#{teacher}</if>
+    </set>
+    where id=#{id}
+  </update>
+  <delete id="deleteMajor">
+    DELETE FROM
+    Major
+    WHERE
+    id =
+    #{id}
+  </delete>
+</mapper>
