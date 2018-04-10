@@ -21,20 +21,18 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
-	public Company getCompanyById(int CompanyId) {
-		return companyDao.queryCompanyById(CompanyId);
+	public Company getCompanyById(int companyId) {
+		return companyDao.queryCompanyById(companyId);
 	}
 
 	@Transactional
 	@Override
-	public boolean addCompany(Company Company) {
+	public boolean addCompany(Company company) {
 		// 空值判断，主要是判断CompanyName不为空
-		if (Company.getName() != null && !"".equals(Company.getName())) {
+		if (company.getName() != null && !"".equals(company.getName())) {
 			// 设置默认值
-//			Company.setCreateTime(new Date());
-//			Company.setLastEditTime(new Date());
 			try {
-				int effectedNum = companyDao.insertCompany(Company);
+				int effectedNum = companyDao.insertCompany(company);
 				if (effectedNum > 0) {
 					return true;
 				} else {
@@ -50,14 +48,14 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Transactional
 	@Override
-	public boolean modifyCompany(Company Company) {
+	public boolean modifyCompany(Company company) {
 		// 空值判断，主要是CompanyId不为空
-		if (Company.getId() != null && Company.getId() > 0) {
+		if (company.getId() != null && company.getId() > 0) {
 			// 设置默认值
-//			Company.setLastEditTime(new Date());
+//			company.setLastEditTime(new Date());
 			try {
 				// 更新Company信息
-				int effectedNum = companyDao.updateCompany(Company);
+				int effectedNum = companyDao.updateCompany(company);
 				if (effectedNum > 0) {
 					return true;
 				} else {
@@ -73,11 +71,11 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Transactional
 	@Override
-	public boolean deleteCompany(int CompanyId) {
-		if (CompanyId > 0) {
+	public boolean deleteCompany(int companyId) {
+		if (companyId > 0) {
 			try {
 				// 删除Company信息
-				int effectedNum = companyDao.deleteCompany(CompanyId);
+				int effectedNum = companyDao.deleteCompany(companyId);
 				if (effectedNum > 0) {
 					return true;
 				} else {
