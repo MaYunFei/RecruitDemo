@@ -15,9 +15,9 @@
   <insert id="insertStudent" useGeneratedKeys="true" keyProperty="id"
           keyColumn="id" parameterType="com.example.demo.entity.Student">
     INSERT INTO
-    Student(name,sex,ago,major_id,school_id,experience,enjlish,andress)
+    Student(name,sex,ago,major_id,school_id,experience,enjlish,andress,phone,password)
     VALUES
-    (#{name},#{sex},#{ago},#{major_id},#{school_id},#{experience},#{enjlish},#{andress})
+    (#{name},#{sex},#{ago},#{major_id},#{school_id},#{experience},#{enjlish},#{andress},#{phone},#{password})
   </insert>
   <update id="updateStudent" parameterType="com.example.demo.entity.Student">
     update Student
@@ -30,6 +30,8 @@
       <if test="experience != experience">experience=#{experience},</if>
       <if test="enjlish != enjlish">enjlish=#{enjlish},</if>
       <if test="andress != andress">andress=#{andress}</if>
+      <if test="phone != phone">phone=#{phone}</if>
+      <if test="phone != phone">phone=#{phone}</if>
     </set>
     where id=#{id}
   </update>

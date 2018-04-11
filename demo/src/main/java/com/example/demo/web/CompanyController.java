@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/superadmin")
+@RequestMapping("/company")
 public class CompanyController {
 	@Autowired
 	private CompanyService companyService;
@@ -28,13 +28,13 @@ public class CompanyController {
 	 * @return
 	 */
 	@RequestMapping(value = "/listcompany", method = RequestMethod.GET)
-	private Map<String, Object> listCompany() {
-		Map<String, Object> modelMap = new HashMap<String, Object>();
+	private List<Company> listCompany() {
+//		Map<String, Object> modelMap = new HashMap<String, Object>();
 		List<Company> list = new ArrayList<Company>();
 		// 获取区域列表
 		list = companyService.getCompanyList();
-		modelMap.put("companyList", list);
-		return modelMap;
+//		modelMap.put("companyList", list);
+		return list;
 	}
 
 	/**
