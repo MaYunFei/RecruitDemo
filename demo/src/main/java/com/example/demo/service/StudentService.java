@@ -46,4 +46,7 @@ public interface StudentService {
 	 */
 	boolean deleteStudent(int StudentId);
 
+
+	Student queryStudentByPassword(String number, String password);
+
 }

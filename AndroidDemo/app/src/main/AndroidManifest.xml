@@ -27,11 +27,18 @@
             </intent-filter>
         </activity>
         <activity
+            android:theme="@style/AppTheme"
             android:name=".ui.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login"
+            android:launchMode="singleTop" />
         <activity
             android:name=".ui.MainActivity"
-            android:label="@string/title_activity_main"></activity>
+            android:label="@string/title_activity_main" />
+        <activity
+            android:theme="@style/AppTheme"
+            android:name=".ui.RegisteredActivity"
+            android:launchMode="singleTop"
+            />
     </application>
 
 </manifest>

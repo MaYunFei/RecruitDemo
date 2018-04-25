@@ -88,4 +88,9 @@ public class StudentServiceImpl implements StudentService {
 			throw new RuntimeException("StudentId不能为空！");
 		}
 	}
+
+	@Override
+	public Student queryStudentByPassword(String number, String password) {
+		return studentDao.queryStudentByPassword(number, password);
+	}
 }

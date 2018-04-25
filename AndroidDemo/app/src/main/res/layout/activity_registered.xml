@@ -7,17 +7,19 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.demo.kaiyun.androiddemo.ui.LoginActivity">
+    tools:context="com.demo.kaiyun.androiddemo.ui.RegisteredActivity">
+
     <LinearLayout
-        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+
         <TextView
-            android:text="输入手机号："
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="输入手机号：" />
+
         <EditText
             android:lines="1"
             android:singleLine="true"
@@ -25,15 +27,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
+
         <TextView
-            android:text="输入手机号："
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="输入手机号：" />
+
         <EditText
             android:lines="1"
             android:singleLine="true"
@@ -41,19 +45,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
     <Button
-        android:layout_gravity="center"
-        android:id="@+id/btn_login"
-        android:layout_marginTop="40dp"
-        android:text="登录"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <Button
-        android:layout_gravity="end"
         android:id="@+id/btn_registered"
-        android:layout_marginTop="40dp"
-        android:text="注册"
+
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:text="注册" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="40dp"
+        android:text="登录" />
 
 </LinearLayout>

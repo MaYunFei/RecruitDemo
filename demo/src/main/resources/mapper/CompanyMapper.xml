@@ -11,7 +11,7 @@
     <!--<result column="HR" property="hr" jdbcType="VARCHAR" />-->
     <!--<result column="number" property="number" jdbcType="VARCHAR" />-->
     <!--<result column="address" property="address" jdbcType="VARCHAR" />-->
-    <!--<result column="quantity" property="quantity" jdbcType="VARCHAR" />-->
+  <!--<result column="email" property="email" jdbcType="VARCHAR" />-->
   <!--</resultMap>-->
 
 
@@ -28,9 +28,9 @@
   <insert id="insertCompany" useGeneratedKeys="true" keyProperty="id"
           keyColumn="id" parameterType="com.example.demo.entity.Company">
     INSERT INTO
-    company(name,introduce,HR,number,address,quantity)
+    company(name,introduce,HR,number,address,email)
     VALUES
-    (#{name},#{introduce},#{HR},#{number},#{address},#{quantity})
+    (#{name},#{introduce},#{HR},#{number},#{address},#{email})
   </insert>
   <update id="updateCompany" parameterType="com.example.demo.entity.Company">
     update company
@@ -40,7 +40,7 @@
       <if test="HR != null">HR=#{HR},</if>
       <if test="number != null">number=#{number},</if>
       <if test="address != address">address=#{address},</if>
-      <if test="quantity != quantity">quantity=#{quantity}</if>
+      <if test="email != email">email=#{email}</if>
     </set>
     where id=#{id}
   </update>

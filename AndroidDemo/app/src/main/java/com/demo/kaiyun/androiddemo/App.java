@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.demo.kaiyun.androiddemo.http.ApiService;
+import com.demo.kaiyun.androiddemo.utils.SPUtils;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -17,6 +18,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        SPUtils.init(this);
         HttpLoggingInterceptor.Logger logger = new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
@@ -27,7 +29,7 @@ public class App extends Application {
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build();
-        Retrofit build = new Retrofit.Builder().client(okHttpClient).addConverterFactory(GsonConverterFactory.create()).baseUrl("http://192.168.50.81:8080/demo/").build();
+        Retrofit build = new Retrofit.Builder().client(okHttpClient).addConverterFactory(GsonConverterFactory.create()).baseUrl("http://172.16.200.46:8080/demo/").build();
         apiService = build.create(ApiService.class);
     }
 

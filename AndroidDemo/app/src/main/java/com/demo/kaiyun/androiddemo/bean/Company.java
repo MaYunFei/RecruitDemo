@@ -14,7 +14,7 @@ public class Company {
 
     private String address;
 
-    private String quantity;
+    private String email;
 
     /**
      * @return id
@@ -103,15 +103,15 @@ public class Company {
     /**
      * @return quantity
      */
-    public String getQuantity() {
-        return quantity;
+    public String getEmail() {
+        return email;
     }
 
     /**
-     * @param quantity
+     * @param email
      */
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
@@ -123,7 +123,7 @@ public class Company {
                 ", hr='" + HR + '\'' +
                 ", number='" + number + '\'' +
                 ", address='" + address + '\'' +
-                ", quantity='" + quantity + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

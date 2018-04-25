@@ -20,9 +20,11 @@ public class Student {
 
     private String andress;
 
-    private String phone;
-
     private String password;
+
+    private String number;
+
+    private String email;
 
     /**
      * @return id
@@ -150,19 +152,27 @@ public class Student {
         this.andress = andress;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
