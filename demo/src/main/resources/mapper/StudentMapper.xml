@@ -47,7 +47,7 @@
     SELECT *
     FROM Student
     WHERE
-    number=#{number},password=#{password}
+    number=#{number} AND password=#{password}
   </select>
 
 </mapper>

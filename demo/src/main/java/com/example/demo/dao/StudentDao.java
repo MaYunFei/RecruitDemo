@@ -1,6 +1,7 @@
 package com.example.demo.dao;
 
 import com.example.demo.entity.Student;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -44,5 +45,5 @@ public interface StudentDao {
     int deleteStudent(int StudentId);
 
 
-    Student queryStudentByPassword(String number, String password);
+    Student queryStudentByPassword(@Param("number") String number, @Param("password") String password);
 }

@@ -19,6 +19,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,6 +29,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +37,7 @@ import java.util.List;
 import com.demo.kaiyun.androiddemo.R;
 import com.demo.kaiyun.androiddemo.base.BaseActivity;
 import com.demo.kaiyun.androiddemo.bean.Student;
+import com.demo.kaiyun.androiddemo.utils.SPUtils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -73,15 +76,26 @@ public class LoginActivity extends BaseActivity {
         mBtnLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                apiService.getStudent("123","123456").enqueue(new Callback<Student>() {
+                String phone = mEtPhone.getText().toString();
+                String password = mEtPassword.getText().toString();
+                if (TextUtils.isEmpty(phone) || TextUtils.isEmpty(password)){
+                    Toast.makeText(LoginActivity.this, "手机号或密码不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                apiService.getStudent(phone,password).enqueue(new Callback<Student>() {
                     @Override
                     public void onResponse(Call<Student> call, Response<Student> response) {
-
+                        Student student = response.body();
+                        SPUtils.getInstance().put("userId",student.getId());
+                        startActivity(MainActivity.class);
+                        finish();
                     }
 
                     @Override
                     public void onFailure(Call<Student> call, Throwable t) {
-
+                        Log.e("ERROR",t+"");
+                        Toast.makeText(LoginActivity.this,  t +"", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

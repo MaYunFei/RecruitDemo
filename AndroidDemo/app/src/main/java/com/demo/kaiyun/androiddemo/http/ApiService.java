@@ -25,7 +25,7 @@ public interface ApiService {
 
 
 
-    @GET("student/getStudent")
+    @GET("student/queryStudentByPassword")
     Call<Student> getStudent(@Query("number")String number,@Query("password") String password);
 
 }

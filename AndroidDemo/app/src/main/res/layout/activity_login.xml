@@ -31,10 +31,11 @@
         android:orientation="horizontal"
         >
         <TextView
-            android:text="输入手机号："
+            android:text="输入密码："
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <EditText
+            android:inputType="textPassword"
             android:lines="1"
             android:singleLine="true"
             android:id="@+id/et_password"
