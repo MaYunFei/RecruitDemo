@@ -29,8 +29,13 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public boolean addStudent(Student student) {
 		// 空值判断，主要是判断StudentName不为空
-		if (student.getName() != null && !"".equals(student.getName())) {
+//		if (student.getName() != null && !"".equals(student.getName())) {
 			// 设置默认值
+
+			if (studentDao.queryStudentByNumber(student.getNumber()) !=null){
+				throw new RuntimeException("手机号已经存在!");
+			}
+
 			try {
 				int effectedNum = studentDao.insertStudent(student);
 				if (effectedNum > 0) {
@@ -41,9 +46,9 @@ public class StudentServiceImpl implements StudentService {
 			} catch (Exception e) {
 				throw new RuntimeException("添加Student信息失败:" + e.toString());
 			}
-		} else {
-			throw new RuntimeException("Student信息不能为空！");
-		}
+//		} else {
+//			throw new RuntimeException("Student信息不能为空！");
+//		}
 	}
 
 	@Transactional
@@ -91,6 +96,18 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Student queryStudentByPassword(String number, String password) {
-		return studentDao.queryStudentByPassword(number, password);
+		Student student = studentDao.queryStudentByNumber(number);
+
+//		Student student = studentDao.queryStudentByPassword(number, password);
+		if (student == null){
+			throw new RuntimeException("查无此人");
+		}else {
+			if (student.getPassword().equals(password)) {
+				return student;
+			}else {
+				throw new RuntimeException("密码错误");
+			}
+
+		}
 	}
 }

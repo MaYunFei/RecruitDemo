@@ -1,6 +1,7 @@
 package com.example.demo.web;
 
 import com.example.demo.entity.Company;
+import com.example.demo.handler.SuccessHandle;
 import com.example.demo.service.CompanyService;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -28,13 +29,10 @@ public class CompanyController {
 	 * @return
 	 */
 	@RequestMapping(value = "/listcompany", method = RequestMethod.GET)
-	private List<Company> listCompany() {
-//		Map<String, Object> modelMap = new HashMap<String, Object>();
+	private Map listCompany() {
 		List<Company> list = new ArrayList<Company>();
-		// 获取区域列表
 		list = companyService.getCompanyList();
-//		modelMap.put("companyList", list);
-		return list;
+		return SuccessHandle.success(list);
 	}
 
 	/**

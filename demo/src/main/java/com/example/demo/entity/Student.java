@@ -175,4 +175,22 @@ public class Student {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                ", ago='" + ago + '\'' +
+                ", major_id='" + major_id + '\'' +
+                ", school_id='" + school_id + '\'' +
+                ", experience='" + experience + '\'' +
+                ", enjlish='" + enjlish + '\'' +
+                ", andress='" + andress + '\'' +
+                ", password='" + password + '\'' +
+                ", number='" + number + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

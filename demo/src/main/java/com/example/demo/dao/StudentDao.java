@@ -44,6 +44,15 @@ public interface StudentDao {
      */
     int deleteStudent(int StudentId);
 
+    /**
+     * 根据Number列出具体Student
+     *
+     * @return Student
+     */
+    Student queryStudentByNumber(String number);
 
+    /**
+     * 根据 手机号密码查找
+     */
     Student queryStudentByPassword(@Param("number") String number, @Param("password") String password);
 }
