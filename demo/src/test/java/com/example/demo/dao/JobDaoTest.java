@@ -42,6 +42,14 @@ public class JobDaoTest {
     }
 
     @Test
+    public void queryJobByCompanyId() {
+        List<Job> jobList = jobDao.queryJobByCompanyId(1);
+        for (int i = 0; i < jobList.size(); i++) {
+            System.out.println(jobList.get(i));
+        }
+    }
+
+    @Test
     public void updateJob() {
     }
 

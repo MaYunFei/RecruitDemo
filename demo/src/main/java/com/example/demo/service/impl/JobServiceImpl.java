@@ -88,4 +88,12 @@ public class JobServiceImpl implements JobService {
 			throw new RuntimeException("JobId不能为空！");
 		}
 	}
+
+	@Override
+	public List<Job> getJobByCompanyId(int companyId) {
+
+		List<Job> jobList = jobDao.queryJobByCompanyId(companyId);
+
+		return jobList;
+	}
 }

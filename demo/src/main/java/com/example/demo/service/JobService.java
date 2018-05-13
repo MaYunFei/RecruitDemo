@@ -46,4 +46,5 @@ public interface JobService {
 	 */
 	boolean deleteJob(int JobId);
 
+    List<Job> getJobByCompanyId(int companyId);
 }

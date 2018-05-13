@@ -42,4 +42,6 @@ public interface JobDao {
      * @return
      */
     int deleteJob(int JobId);
+
+    List<Job> queryJobByCompanyId(int companyId);
 }

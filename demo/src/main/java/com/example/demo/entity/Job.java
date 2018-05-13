@@ -10,7 +10,7 @@ public class Job {
 
     private String require;
 
-    private String number;
+    private String money;
 
     private String education;
 
@@ -73,17 +73,17 @@ public class Job {
     }
 
     /**
-     * @return number
+     * @return money
      */
-    public String getNumber() {
-        return number;
+    public String getMoney() {
+        return money;
     }
 
     /**
-     * @param number
+     * @param money
      */
-    public void setNumber(String number) {
-        this.number = number;
+    public void setMoney(String money) {
+        this.money = money;
     }
 
     /**
@@ -121,7 +121,7 @@ public class Job {
                 ", name='" + name + '\'' +
                 ", responsibility='" + responsibility + '\'' +
                 ", require='" + require + '\'' +
-                ", number=" + number +
+                ", money=" + money +
                 ", education='" + education + '\'' +
                 ", company_id=" + company_id +
                 '}';
