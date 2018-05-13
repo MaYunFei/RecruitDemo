@@ -46,4 +46,6 @@ public interface CompanyService {
 	 */
 	boolean deleteCompany(int CompanyId);
 
+	Company queryCompanyByNumber(String number,String password);
+
 }

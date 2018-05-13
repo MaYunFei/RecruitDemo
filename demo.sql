@@ -130,7 +130,7 @@ DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) DEFAULT NULL,
-  `sex` varchar(20) DEFAULT NULL,
+  `sex` varchar(20) DEFAULT '男',
   `ago` varchar(20) DEFAULT NULL,
   `number` varchar(11) DEFAULT NULL,
   `email` varchar(20) DEFAULT NULL,
@@ -147,9 +147,9 @@ CREATE TABLE `student` (
 -- Records of student
 -- ----------------------------
 BEGIN;
-INSERT INTO `student` VALUES (1, '刘', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `student` VALUES (2, '李', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `student` VALUES (3, '王', NULL, NULL, '123', NULL, NULL, NULL, NULL, NULL, NULL, '123');
+INSERT INTO `student` VALUES (1, '刘', '男', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `student` VALUES (2, '李', '男', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `student` VALUES (3, '王', '男', NULL, '123', NULL, NULL, NULL, NULL, NULL, NULL, '123');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

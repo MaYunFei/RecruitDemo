@@ -100,7 +100,7 @@ public class StudentServiceImpl implements StudentService {
 
 //		Student student = studentDao.queryStudentByPassword(number, password);
 		if (student == null){
-			throw new RuntimeException("查无此人");
+			throw new RuntimeException("手机号输入错误");
 		}else {
 			if (student.getPassword().equals(password)) {
 				return student;

@@ -28,7 +28,7 @@ public class CompanyController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/listcompany", method = RequestMethod.GET)
+	@RequestMapping(value = "/listCompany", method = RequestMethod.GET)
 	private Map listCompany() {
 		List<Company> list = new ArrayList<Company>();
 		list = companyService.getCompanyList();
@@ -59,13 +59,13 @@ public class CompanyController {
 	 * @throws JsonMappingException
 	 * @throws JsonParseException
 	 */
-	@RequestMapping(value = "/addcompany", method = RequestMethod.POST)
-	private Map<String, Object> addCompany(@RequestBody Company company)
-			throws JsonParseException, JsonMappingException, IOException {
-		Map<String, Object> modelMap = new HashMap<String, Object>();
-		// 添加区域信息
-		modelMap.put("success", companyService.addCompany(company));
-		return modelMap;
+	@RequestMapping(value = "/addCompany", method = RequestMethod.POST)
+	private Map<String, Object> addCompany(String number, String password) {
+		Company company = new Company();
+		company.setNumber(number);
+		company.setPassword(password);
+		companyService.addCompany(company);
+		return SuccessHandle.success(company);
 	}
 
 	/**
@@ -94,5 +94,15 @@ public class CompanyController {
 		modelMap.put("success", companyService.deleteCompany(companyId));
 		return modelMap;
 	}
+
+
+	@RequestMapping(value = "/queryCompanyByPassword", method = RequestMethod.POST)
+	private Map queryCompanyByPassword(String number, String password) {
+		System.out.println(number + "  " + password);
+		return SuccessHandle.success(companyService.queryCompanyByNumber(number, password));
+	}
+
+
+
 
 }

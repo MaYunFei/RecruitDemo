@@ -14,6 +14,8 @@ public class School {
 
     private Integer number;
 
+    private String name;
+
     /**
      * @return id
      */
@@ -96,5 +98,13 @@ public class School {
      */
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

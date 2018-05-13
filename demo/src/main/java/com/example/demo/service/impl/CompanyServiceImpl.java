@@ -29,7 +29,7 @@ public class CompanyServiceImpl implements CompanyService {
 	@Override
 	public boolean addCompany(Company company) {
 		// 空值判断，主要是判断CompanyName不为空
-		if (company.getName() != null && !"".equals(company.getName())) {
+//		if (company.getName() != null && !"".equals(company.getName())) {
 			// 设置默认值
 			try {
 				int effectedNum = companyDao.insertCompany(company);
@@ -41,9 +41,9 @@ public class CompanyServiceImpl implements CompanyService {
 			} catch (Exception e) {
 				throw new RuntimeException("添加Company信息失败:" + e.toString());
 			}
-		} else {
-			throw new RuntimeException("Company信息不能为空！");
-		}
+//		} else {
+//			throw new RuntimeException("Company信息不能为空！");
+//		}
 	}
 
 	@Transactional
@@ -87,5 +87,21 @@ public class CompanyServiceImpl implements CompanyService {
 		} else {
 			throw new RuntimeException("CompanyId不能为空！");
 		}
+	}
+
+	@Override
+	public Company queryCompanyByNumber(String number,String password) {
+		Company company = companyDao.queryCompanyByNumber(number);
+
+		if (company==null){
+			throw new RuntimeException("手机号输入错误");
+		}
+
+		if (password.equals(company.getPassword())){
+			return company;
+		}else {
+			throw new RuntimeException("密码错误");
+		}
+
 	}
 }

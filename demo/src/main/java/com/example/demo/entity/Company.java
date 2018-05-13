@@ -16,6 +16,8 @@ public class Company {
 
     private String email;
 
+    private String password;
+
     /**
      * @return id
      */
@@ -101,17 +103,17 @@ public class Company {
     }
 
 
-
     @Override
     public String toString() {
         return "Company{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", introduce='" + introduce + '\'' +
-                ", hr='" + HR + '\'' +
+                ", HR='" + HR + '\'' +
                 ", number='" + number + '\'' +
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 
@@ -121,5 +123,13 @@ public class Company {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

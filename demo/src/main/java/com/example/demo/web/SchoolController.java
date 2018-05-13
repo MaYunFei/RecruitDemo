@@ -1,6 +1,7 @@
 package com.example.demo.web;
 
 import com.example.demo.entity.School;
+import com.example.demo.handler.SuccessHandle;
 import com.example.demo.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/school")
@@ -21,11 +23,11 @@ public class SchoolController {
      *
      * @return
      */
-    @RequestMapping(value = "/listschool", method = RequestMethod.GET)
-    private List<School> listCompany() {
+    @RequestMapping(value = "/listSchool", method = RequestMethod.GET)
+    private Map listCompany() {
         List<School> list = new ArrayList<School>();
         list = schoolService.getSchoolList();
-        return list;
+        return SuccessHandle.success(list);
     }
 
 }

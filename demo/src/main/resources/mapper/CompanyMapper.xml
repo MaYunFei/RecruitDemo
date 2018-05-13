@@ -39,8 +39,8 @@
       <if test="introduce != null">introduce=#{introduce},</if>
       <if test="HR != null">HR=#{HR},</if>
       <if test="number != null">number=#{number},</if>
-      <if test="address != address">address=#{address},</if>
-      <if test="email != email">email=#{email}</if>
+      <if test="address != null">address=#{address},</if>
+      <if test="email != null">email=#{email}</if>
     </set>
     where id=#{id}
   </update>
@@ -51,4 +51,11 @@
     id =
     #{id}
   </delete>
+
+  <select id="queryCompanyByNumber" resultType="com.example.demo.entity.Company">
+    SELECT *
+    FROM company
+    WHERE
+    number=#{number}
+  </select>
 </mapper>

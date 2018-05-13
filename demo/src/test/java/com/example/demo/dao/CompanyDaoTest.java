@@ -53,4 +53,10 @@ public class CompanyDaoTest {
     @Test
     public void deleteCompany() {
     }
+
+    @Test
+    public void queryCompanyByPassword() {
+        Company company = companyDao.queryCompanyByNumber("15100000000");
+        System.out.println(company);
+    }
 }

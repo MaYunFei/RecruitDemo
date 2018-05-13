@@ -26,12 +26,12 @@
       <if test="sex != null">sex=#{sex},</if>
       <if test="ago != null">ago=#{ago},</if>
       <if test="major_id != null">major_id=#{major_id},</if>
-      <if test="school_id != school_id">school_id=#{school_id},</if>
-      <if test="experience != experience">experience=#{experience},</if>
-      <if test="enjlish != enjlish">enjlish=#{enjlish},</if>
-      <if test="andress != andress">andress=#{andress}</if>
-      <if test="number != number">number=#{number}</if>
-      <if test="email != email">email=#{email}</if>
+      <if test="school_id != null">school_id=#{school_id},</if>
+      <if test="experience != null">experience=#{experience},</if>
+      <if test="enjlish != null">enjlish=#{enjlish},</if>
+      <if test="andress != null">andress=#{andress},</if>
+      <if test="number != null">number=#{number},</if>
+      <if test="email != null">email=#{email}</if>
     </set>
     where id=#{id}
   </update>

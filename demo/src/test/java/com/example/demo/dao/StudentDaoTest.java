@@ -57,4 +57,12 @@ public class StudentDaoTest {
             System.out.println(student);
         }
     }
+
+    @Test
+    public void updateStudent() {
+        Student student = studentDao.queryStudentByNumber("15101578395");
+        student.setSchoolId("2");
+
+        studentDao.updateStudent(student);
+    }
 }

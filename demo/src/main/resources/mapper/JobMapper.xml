@@ -16,9 +16,9 @@
   <insert id="insertJob" useGeneratedKeys="true" keyProperty="id"
           keyColumn="id" parameterType="com.example.demo.entity.Job">
     INSERT INTO
-    Job(name,responsibility,require,number,education,major_id)
+    Job(name,responsibility,`require`,number,education,company_id)
     VALUES
-    (#{name},#{responsibility},#{require},#{number},#{education},#{major_id})
+    (#{name},#{responsibility},#{require},#{number},#{education},#{company_id})
   </insert>
   <update id="updateJob" parameterType="com.example.demo.entity.Job">
     update Job
@@ -27,8 +27,8 @@
       <if test="responsibility != null">responsibility=#{responsibility},</if>
       <if test="require != null">require=#{require},</if>
       <if test="number != null">number=#{number},</if>
-      <if test="education != education">education=#{education},</if>
-      <if test="major_id != major_id">major_id=#{major_id}</if>
+      <if test="education != null">education=#{education},</if>
+      <if test="company_id != null">company_id=#{company_id}</if>
     </set>
     where id=#{id}
   </update>

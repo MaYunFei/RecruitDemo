@@ -10,11 +10,11 @@ public class Job {
 
     private String require;
 
-    private Integer number;
+    private String number;
 
     private String education;
 
-    private Integer major_id;
+    private String company_id;
 
     /**
      * @return id
@@ -75,14 +75,14 @@ public class Job {
     /**
      * @return number
      */
-    public Integer getNumber() {
+    public String getNumber() {
         return number;
     }
 
     /**
      * @param number
      */
-    public void setNumber(Integer number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
@@ -103,14 +103,27 @@ public class Job {
     /**
      * @return major_id
      */
-    public Integer getMajorId() {
-        return major_id;
+    public String getCompanyId() {
+        return company_id;
     }
 
     /**
-     * @param majorId
+     * @param companyId
      */
-    public void setMajorId(Integer majorId) {
-        this.major_id = majorId;
+    public void setCompanyId(String companyId) {
+        this.company_id = companyId;
+    }
+
+    @Override
+    public String toString() {
+        return "Job{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", responsibility='" + responsibility + '\'' +
+                ", require='" + require + '\'' +
+                ", number=" + number +
+                ", education='" + education + '\'' +
+                ", company_id=" + company_id +
+                '}';
     }
 }
