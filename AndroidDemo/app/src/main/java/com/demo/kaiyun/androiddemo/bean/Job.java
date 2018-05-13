@@ -1,7 +1,9 @@
 package com.demo.kaiyun.androiddemo.bean;
 
 
-public class Job {
+import java.io.Serializable;
+
+public class Job implements Serializable{
     private Integer id;
 
     private String name;
@@ -14,7 +16,7 @@ public class Job {
 
     private String education;
 
-    private Integer major_id;
+    private String money;
 
     /**
      * @return id
@@ -103,14 +105,14 @@ public class Job {
     /**
      * @return major_id
      */
-    public Integer getMajorId() {
-        return major_id;
+    public String getMoney() {
+        return money;
     }
 
     /**
-     * @param majorId
+     * @param money
      */
-    public void setMajorId(Integer majorId) {
-        this.major_id = majorId;
+    public void setMoney(String money) {
+        this.money = money;
     }
 }

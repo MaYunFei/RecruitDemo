@@ -33,8 +33,8 @@ import retrofit2.Response;
 
 public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    private RecyclerView mRvMain;
     private ArrayList<String> array = new ArrayList<>();
+    private RecyclerView mRvMain;
     private CardListAdapter adapter;
     private SwipeRefreshLayout mRefreshLayout;
     private List<Company> mCompanyList = new ArrayList<>();
@@ -86,8 +86,10 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
             protected void onSuccess(List<Company> data) {
                 mCompanyList.clear();
                 mCompanyList.addAll(data);
+                array.clear();
                 for (Company company : data) {
                     array.add(company.getName() +"\n " + company.getIntroduce());
+
                     if (mRefreshLayout != null){
                         mRefreshLayout.setRefreshing(false);
                     }
@@ -130,6 +132,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 @Override
                 public void onClick(View v) {
                     Company company = mCompanyList.get(position);
+                    JobListActivity.startJobList(getContext(),company);
 
                 }
             });

@@ -35,7 +35,13 @@
             android:launchMode="singleTop"
             android:theme="@style/AppTheme" />
         <activity android:name=".ui.student.ResumeEditActivity" />
-        <activity android:name=".ui.company.CompanyMainActivity"></activity>
+        <activity android:name=".ui.company.CompanyMainActivity" />
+        <activity
+            android:name=".ui.student.JobListActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.student.JobInfoActivity"
+            android:theme="@style/AppTheme"
+            ></activity>
     </application>
 
 </manifest>

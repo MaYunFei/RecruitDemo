@@ -2,6 +2,7 @@ package com.demo.kaiyun.androiddemo.http;
 
 
 import com.demo.kaiyun.androiddemo.bean.Company;
+import com.demo.kaiyun.androiddemo.bean.Job;
 import com.demo.kaiyun.androiddemo.bean.ResultBean;
 import com.demo.kaiyun.androiddemo.bean.School;
 import com.demo.kaiyun.androiddemo.bean.Student;
@@ -48,6 +49,9 @@ public interface ApiService {
     @GET("student/get/{userId}")
     Call<ResultBean<StudentInfo>> getStudentInfoByUserId(@Path("userId") int userId);
 
+    /**
+     * 更新学生信息
+     */
     @POST("student/update/{userId}")
     @FormUrlEncoded
     Call<ResultBean<Student>> updateStudent(@Path("userId") int userId,
@@ -62,8 +66,15 @@ public interface ApiService {
 
     );
 
-
+    /**
+     * 获取学校列表
+     */
     @GET("school/listSchool")
     Call<ResultBean<List<School>>> getSchoolList();
 
+    /**
+     * 根据公司 获得职位信息
+     */
+    @GET("job/{companyId}")
+    Call<ResultBean<List<Job>>> getJobByCompanyId(@Path("companyId") int companyId);
 }

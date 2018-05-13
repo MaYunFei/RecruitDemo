@@ -1,7 +1,9 @@
 package com.demo.kaiyun.androiddemo.bean;
 
 
-public class Company {
+import java.io.Serializable;
+
+public class Company implements Serializable{
     private Integer id;
 
     private String name;
