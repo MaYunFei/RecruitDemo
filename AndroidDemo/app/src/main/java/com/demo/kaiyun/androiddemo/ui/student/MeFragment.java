@@ -13,11 +13,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.demo.kaiyun.androiddemo.R;
+import com.demo.kaiyun.androiddemo.base.BaseFragment;
 import com.demo.kaiyun.androiddemo.ui.LoginActivity;
 import com.demo.kaiyun.androiddemo.utils.SPUtils;
 
 
-public class MeFragment extends Fragment {
+public class MeFragment extends BaseFragment {
 
 
     private Button btnExit;
@@ -33,6 +34,8 @@ public class MeFragment extends Fragment {
         initView(view);
         return view;
     }
+
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

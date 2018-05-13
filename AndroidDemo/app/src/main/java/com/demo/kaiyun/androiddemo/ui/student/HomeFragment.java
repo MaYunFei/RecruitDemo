@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 import com.demo.kaiyun.androiddemo.App;
 import com.demo.kaiyun.androiddemo.R;
+import com.demo.kaiyun.androiddemo.base.BaseFragment;
 import com.demo.kaiyun.androiddemo.base.ResponseHandle;
 import com.demo.kaiyun.androiddemo.bean.Company;
 import com.demo.kaiyun.androiddemo.http.ApiService;
@@ -29,11 +31,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView mRvMain;
     private ArrayList<String> array = new ArrayList<>();
     private CardListAdapter adapter;
+    private SwipeRefreshLayout mRefreshLayout;
+    private List<Company> mCompanyList = new ArrayList<>();
 
     public HomeFragment() {
     }
@@ -62,23 +66,40 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
+
         mRvMain = (RecyclerView) view.findViewById(R.id.rv_main);
+        mRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.refreshLayout);
+        mRefreshLayout.setOnRefreshListener(this);
         FragmentActivity activity = getActivity();
-        ApiService apiService = ((App) (getActivity().getApplication())).getApiService();
-        apiService.getCompanyList().enqueue(new ResponseHandle<List<Company>>() {
-            @Override
-            protected void onSuccess(List<Company> data) {
-                for (Company company : data) {
-                    array.add(company.getName() +"\n " + company.getIntroduce());
-                }
-                adapter.notifyDataSetChanged();
-            }
-        });
+        getData();
+
 
         adapter = new CardListAdapter(view.getContext(),array);
         mRvMain.setLayoutManager(new LinearLayoutManager(getContext()));
         mRvMain.setAdapter(adapter);
 
+    }
+
+    private void getData(){
+        mApiService.getCompanyList().enqueue(new ResponseHandle<List<Company>>() {
+            @Override
+            protected void onSuccess(List<Company> data) {
+                mCompanyList.clear();
+                mCompanyList.addAll(data);
+                for (Company company : data) {
+                    array.add(company.getName() +"\n " + company.getIntroduce());
+                    if (mRefreshLayout != null){
+                        mRefreshLayout.setRefreshing(false);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    @Override
+    public void onRefresh() {
+        getData();
     }
 
 
@@ -99,11 +120,19 @@ public class HomeFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(MyViewHolder holder, int position) {
+        public void onBindViewHolder(MyViewHolder holder, final int position) {
             holder.tv.setText(list.get(position));
 //            if (icardViewChanger!=null){
 //                icardViewChanger.changeCardView(holder.cardView);
 //            }
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Company company = mCompanyList.get(position);
+
+                }
+            });
 
         }
 

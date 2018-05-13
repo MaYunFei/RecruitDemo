@@ -1,7 +1,9 @@
 package com.demo.kaiyun.androiddemo.bean;
 
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable {
     private Integer id;
 
     private String name;
@@ -23,6 +25,8 @@ public class Student {
     private String number;
 
     private String password;
+
+    private String email;
 
     public String getPassword() {
         return password;
@@ -164,5 +168,30 @@ public class Student {
      */
     public void setAndress(String andress) {
         this.andress = andress;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                ", ago='" + ago + '\'' +
+                ", major_id='" + major_id + '\'' +
+                ", school_id='" + school_id + '\'' +
+                ", experience='" + experience + '\'' +
+                ", enjlish='" + enjlish + '\'' +
+                ", andress='" + andress + '\'' +
+                ", number='" + number + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

@@ -4,8 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
-
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -24,18 +22,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:theme="@style/AppTheme"
             android:name=".ui.LoginActivity"
             android:label="@string/title_activity_login"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.MainActivity"
-            android:label="@string/title_activity_main" />
+            android:label="@string/title_activity_main"
+            android:launchMode="singleTask" />
         <activity
-            android:theme="@style/AppTheme"
             android:name=".ui.RegisteredActivity"
             android:launchMode="singleTop"
-            />
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.student.ResumeEditActivity" />
+        <activity android:name=".ui.company.CompanyMainActivity"></activity>
     </application>
 
 </manifest>

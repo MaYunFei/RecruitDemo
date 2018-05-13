@@ -26,14 +26,19 @@
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:text="热门企业:"
         android:textSize="20dp" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_main"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="1">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
-        ></android.support.v7.widget.RecyclerView>
+            />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 
 
 </LinearLayout>

@@ -1,5 +1,7 @@
 package com.demo.kaiyun.androiddemo.base;
 
+import android.text.TextUtils;
+
 import com.demo.kaiyun.androiddemo.bean.ResultBean;
 
 import retrofit2.Call;
@@ -16,11 +18,18 @@ public abstract class ResponseHandle<T> implements Callback<ResultBean<T>> {
             if (result.isSuccess()){
                 onSuccess(result.getBody());
             }else {
-                showMessage(result.getErrMsg());
+                onError();
+                String errMsg = result.getErrMsg();
+                showMessage(TextUtils.isEmpty(errMsg)?"服务器异常":errMsg);
             }
         }else {
+            onError();
             showMessage("服务器异常");
         }
+    }
+
+    protected void onError() {
+
     }
 
     protected abstract void onSuccess(T data);

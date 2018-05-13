@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v4.util.SimpleArrayMap;
 
+import com.demo.kaiyun.androiddemo.ui.LoginActivity;
+
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
@@ -28,6 +30,33 @@ public final class SPUtils {
     public static void init(Application application){
         app = application;
     }
+
+
+    public static int getType(){
+        return getInstance().getInt("type", LoginActivity.TYPE_STUDENT);
+    }
+    public static void setType(int type){
+        getInstance().put("type",type);
+    }
+
+    public static int getUserId(){
+        return getInstance().getInt("userId",-1);
+    }
+    public static void setUserId(int id){
+        getInstance().put("userId",id);
+    }
+
+    public static void clearUserId(){
+        setUserId(-1);
+    }
+
+    public static String getUserName(){
+        return getInstance().getString("userName","");
+    }
+    public static void setUserName(String name){
+        getInstance().put("userName",name);
+    }
+
 
     /**
      * Return the single {@link SPUtils} instance

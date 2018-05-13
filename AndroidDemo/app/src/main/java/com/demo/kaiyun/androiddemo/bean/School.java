@@ -4,6 +4,8 @@ package com.demo.kaiyun.androiddemo.bean;
 public class School {
     private Integer id;
 
+    private String name;
+
     private String introduce;
 
     private String quantity;
@@ -13,6 +15,14 @@ public class School {
     private String teacher;
 
     private Integer number;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     /**
      * @return id
@@ -96,5 +106,10 @@ public class School {
      */
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
