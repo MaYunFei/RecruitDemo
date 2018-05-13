@@ -2,13 +2,21 @@ package com.demo.kaiyun.androiddemo.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.demo.kaiyun.androiddemo.R;
 import com.demo.kaiyun.androiddemo.base.BaseActivity;
+import com.demo.kaiyun.androiddemo.base.ResponseHandle;
 import com.demo.kaiyun.androiddemo.bean.Student;
+import com.demo.kaiyun.androiddemo.utils.SPUtils;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisteredActivity extends BaseActivity {
     private EditText mEtPhone;
@@ -32,8 +40,22 @@ public class RegisteredActivity extends BaseActivity {
         mBtnRegistered.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Student student = new Student();
-                student.setName("15101578395");
+                String phone = mEtPhone.getText().toString();
+                String password = mEtPassword.getText().toString();
+                if (TextUtils.isEmpty(phone) || TextUtils.isEmpty(password)){
+                    showMessage("手机号或密码不能为空");
+                    return;
+                }
+//                Student student = new Student();
+//                student.setName("15101578395");
+                apiService.addStudent(phone,password)
+                        .enqueue(new ResponseHandle<Student>() {
+                            @Override
+                            protected void onSuccess(Student student) {
+                                SPUtils.setUserId(student.getId());
+                                startActivity(MainActivity.class);
+                            }
+                        });
             }
         });
 

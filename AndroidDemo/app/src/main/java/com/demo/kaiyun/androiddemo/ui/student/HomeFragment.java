@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.demo.kaiyun.androiddemo.App;
 import com.demo.kaiyun.androiddemo.R;
+import com.demo.kaiyun.androiddemo.base.ResponseHandle;
 import com.demo.kaiyun.androiddemo.bean.Company;
 import com.demo.kaiyun.androiddemo.http.ApiService;
 
@@ -64,21 +65,16 @@ public class HomeFragment extends Fragment {
         mRvMain = (RecyclerView) view.findViewById(R.id.rv_main);
         FragmentActivity activity = getActivity();
         ApiService apiService = ((App) (getActivity().getApplication())).getApiService();
-        apiService.getCompanyList().enqueue(new Callback<List<Company>>() {
+        apiService.getCompanyList().enqueue(new ResponseHandle<List<Company>>() {
             @Override
-            public void onResponse(Call<List<Company>> call, Response<List<Company>> response) {
-                List<Company> body = response.body();
-                for (Company company : body) {
+            protected void onSuccess(List<Company> data) {
+                for (Company company : data) {
                     array.add(company.getName() +"\n " + company.getIntroduce());
                 }
                 adapter.notifyDataSetChanged();
             }
-
-            @Override
-            public void onFailure(Call<List<Company>> call, Throwable t) {
-                Log.e("ERROR",""+t);
-            }
         });
+
         adapter = new CardListAdapter(view.getContext(),array);
         mRvMain.setLayoutManager(new LinearLayoutManager(getContext()));
         mRvMain.setAdapter(adapter);

@@ -36,6 +36,8 @@ import java.util.List;
 
 import com.demo.kaiyun.androiddemo.R;
 import com.demo.kaiyun.androiddemo.base.BaseActivity;
+import com.demo.kaiyun.androiddemo.base.ResponseHandle;
+import com.demo.kaiyun.androiddemo.bean.ResultBean;
 import com.demo.kaiyun.androiddemo.bean.Student;
 import com.demo.kaiyun.androiddemo.utils.SPUtils;
 
@@ -78,33 +80,44 @@ public class LoginActivity extends BaseActivity {
             public void onClick(View v) {
                 String phone = mEtPhone.getText().toString();
                 String password = mEtPassword.getText().toString();
-                if (TextUtils.isEmpty(phone) || TextUtils.isEmpty(password)){
+                if (TextUtils.isEmpty(phone) || TextUtils.isEmpty(password)) {
                     Toast.makeText(LoginActivity.this, "手机号或密码不能为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                apiService.getStudent(phone,password).enqueue(new Callback<Student>() {
-                    @Override
-                    public void onResponse(Call<Student> call, Response<Student> response) {
-                        Student student = response.body();
-                        SPUtils.getInstance().put("userId",student.getId());
-                        startActivity(MainActivity.class);
-                        finish();
-                    }
+                apiService.getStudent(phone, password)
 
-                    @Override
-                    public void onFailure(Call<Student> call, Throwable t) {
-                        Log.e("ERROR",t+"");
-                        Toast.makeText(LoginActivity.this,  t +"", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        .enqueue(new ResponseHandle<Student>() {
+                            @Override
+                            protected void onSuccess(Student student) {
+                                SPUtils.setUserId( student.getId());
+                                startActivity(MainActivity.class);
+                                finish();
+                            }
+                        });
+
+//                        .enqueue(new Callback<Student>() {
+//                    @Override
+//                    public void onResponse(Call<Student> call, Response<Student> response) {
+//                        Student student = response.body();
+//                        SPUtils.getInstance().put("userId",student.getId());
+//                        startActivity(MainActivity.class);
+//                        finish();
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<Student> call, Throwable t) {
+//                        Log.e("ERROR",t+"");
+//                        Toast.makeText(LoginActivity.this,  t +"", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
             }
         });
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        if (!isFinishing()){
+        if (!isFinishing()) {
             onBackPressed();
         }
         return super.onSupportNavigateUp();

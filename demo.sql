@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `company`;
 CREATE TABLE `company` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) DEFAULT NULL,
   `introduce` varchar(100) DEFAULT NULL,
   `address` varchar(30) DEFAULT NULL,
@@ -53,7 +53,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `job`;
 CREATE TABLE `job` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) DEFAULT NULL,
   `responsibility` varchar(50) DEFAULT NULL,
   `require` varchar(50) DEFAULT NULL,
@@ -84,7 +84,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `major`;
 CREATE TABLE `major` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) DEFAULT NULL,
   `introduce` varchar(20) DEFAULT NULL,
   `academy` varchar(20) DEFAULT NULL,
@@ -114,7 +114,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `school`;
 CREATE TABLE `school` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `introduce` varchar(20) DEFAULT NULL,
   `quantity` varchar(20) DEFAULT NULL,
   `adress` varchar(20) DEFAULT NULL,
@@ -128,7 +128,7 @@ CREATE TABLE `school` (
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) DEFAULT NULL,
   `sex` varchar(20) DEFAULT NULL,
   `ago` varchar(20) DEFAULT NULL,
