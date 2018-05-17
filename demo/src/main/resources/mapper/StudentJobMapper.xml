@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.StudentJobDao">
+
+    <select id="queryStudent" resultType="com.example.demo.entity.StudentJob">
+    SELECT *
+    FROM StudentJob
+    WHERE job_id=#{job_id}
+  </select>
+    <select id="queryJob" resultType="com.example.demo.entity.StudentJob">
+    SELECT *
+    FROM StudentJob
+    WHERE student_id=#{student_id}
+  </select>
+    <insert id="insertStudentJob" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id" parameterType="com.example.demo.entity.StudentJob">
+    INSERT INTO
+    StudentJob(student_id,job_id)
+    VALUES
+    (#{student_id},#{job_id})
+  </insert>
+
+
+</mapper>
