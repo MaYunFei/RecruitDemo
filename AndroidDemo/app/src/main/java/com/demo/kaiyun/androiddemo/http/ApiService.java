@@ -5,6 +5,7 @@ import com.demo.kaiyun.androiddemo.bean.Company;
 import com.demo.kaiyun.androiddemo.bean.Job;
 import com.demo.kaiyun.androiddemo.bean.ResultBean;
 import com.demo.kaiyun.androiddemo.bean.School;
+import com.demo.kaiyun.androiddemo.bean.SendedJob;
 import com.demo.kaiyun.androiddemo.bean.Student;
 import com.demo.kaiyun.androiddemo.bean.StudentInfo;
 
@@ -77,4 +78,18 @@ public interface ApiService {
      */
     @GET("job/{companyId}")
     Call<ResultBean<List<Job>>> getJobByCompanyId(@Path("companyId") int companyId);
+
+
+    @POST("student_job/add")
+    @FormUrlEncoded
+    Call<ResultBean<String>> sendResume(@Field("student_id")int student_id, @Field("job_id") int job_id);
+
+
+    /**
+     * 根据公司 获得职位信息
+     */
+    @GET("student_job/getJob/{student_id}")
+    Call<ResultBean<List<SendedJob>>> getJob(@Path("student_id") int student_id);
+
+
 }

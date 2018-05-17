@@ -12,11 +12,12 @@ public class Job implements Serializable{
 
     private String require;
 
-    private Integer number;
 
     private String education;
 
     private String money;
+
+    private String company_id;
 
     /**
      * @return id
@@ -74,19 +75,7 @@ public class Job implements Serializable{
         this.require = require;
     }
 
-    /**
-     * @return number
-     */
-    public Integer getNumber() {
-        return number;
-    }
 
-    /**
-     * @param number
-     */
-    public void setNumber(Integer number) {
-        this.number = number;
-    }
 
     /**
      * @return education
@@ -114,5 +103,18 @@ public class Job implements Serializable{
      */
     public void setMoney(String money) {
         this.money = money;
+    }
+    /**
+     * @return major_id
+     */
+    public String getCompanyId() {
+        return company_id;
+    }
+
+    /**
+     * @param companyId
+     */
+    public void setCompanyId(String companyId) {
+        this.company_id = companyId;
     }
 }

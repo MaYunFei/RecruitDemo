@@ -90,11 +90,20 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 for (Company company : data) {
                     array.add(company.getName() +"\n " + company.getIntroduce());
 
-                    if (mRefreshLayout != null){
-                        mRefreshLayout.setRefreshing(false);
-                    }
+
                 }
                 adapter.notifyDataSetChanged();
+                if (mRefreshLayout != null){
+                    mRefreshLayout.setRefreshing(false);
+                }
+            }
+
+            @Override
+            protected void onError() {
+                super.onError();
+                if (mRefreshLayout != null){
+                    mRefreshLayout.setRefreshing(false);
+                }
             }
         });
     }

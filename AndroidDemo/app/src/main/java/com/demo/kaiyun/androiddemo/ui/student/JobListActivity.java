@@ -96,6 +96,13 @@ public class JobListActivity extends BaseActivity implements SwipeRefreshLayout.
                             }
                         }
                         adapter.notifyDataSetChanged();
+                        mRefreshLayout.setRefreshing(false);
+                    }
+
+                    @Override
+                    protected void onError() {
+                        super.onError();
+                        mRefreshLayout.setRefreshing(false);
                     }
                 });
     }
@@ -126,6 +133,7 @@ public class JobListActivity extends BaseActivity implements SwipeRefreshLayout.
                 @Override
                 public void onClick(View v) {
                     Job job = mJobList.get(position);
+                    JobInfoActivity.startJobInfoActivity(context,job);
 //                    JobListActivity.startJobList(getContext(),company);
 
                 }
