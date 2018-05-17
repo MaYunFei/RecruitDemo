@@ -5,9 +5,9 @@
 # http://www.sequelpro.com/
 # https://github.com/sequelpro/sequelpro
 #
-# Host: 127.0.0.1 (MySQL 5.7.22)
+# Host: 127.0.0.1 (MySQL 5.7.21)
 # Database: demo
-# Generation Time: 2018-05-13 15:16:51 +0000
+# Generation Time: 2018-05-17 02:17:39 +0000
 # ************************************************************
 
 
@@ -189,6 +189,31 @@ VALUES
   (19,'李智','男','23','15101578395','','',NULL,'2',NULL,'','123456');
 
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table studentjob
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `studentjob`;
+
+CREATE TABLE `studentjob` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_id` int(11) NOT NULL,
+  `job_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `studentjob` WRITE;
+/*!40000 ALTER TABLE `studentjob` DISABLE KEYS */;
+
+INSERT INTO `studentjob` (`id`, `student_id`, `job_id`)
+VALUES
+  (1,19,1),
+  (2,19,2),
+  (3,19,3);
+
+/*!40000 ALTER TABLE `studentjob` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
