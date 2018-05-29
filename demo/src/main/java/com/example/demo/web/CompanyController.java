@@ -1,15 +1,17 @@
 package com.example.demo.web;
 
 import com.example.demo.entity.Company;
+import com.example.demo.entity.Job;
+import com.example.demo.entity.Student;
 import com.example.demo.handler.SuccessHandle;
 import com.example.demo.service.CompanyService;
+import com.example.demo.service.JobService;
+import com.example.demo.service.StudentJobService;
+import com.example.demo.service.StudentService;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +24,12 @@ import java.util.Map;
 public class CompanyController {
 	@Autowired
 	private CompanyService companyService;
-
+	@Autowired
+	private StudentJobService studentJobService;
+	@Autowired
+	private JobService jobService;
+	@Autowired
+	private StudentService studentService;
 	/**
 	 * 获取所有的区域信息
 	 * 
@@ -103,6 +110,34 @@ public class CompanyController {
 	}
 
 
+	@RequestMapping(value = "/queryJobInfo/{companyId}", method = RequestMethod.GET)
+	private Map queryJobInfo(@PathVariable(value = "companyId") int companyId) {
+
+
+		List<Job> jobByCompanyId = jobService.getJobByCompanyId(companyId);
+		List<Object> list = new ArrayList<>(jobByCompanyId.size());
+
+		for (Job job : jobByCompanyId) {
+			Map<String, Object> modelMap = new HashMap<String, Object>();
+			modelMap.put("job", job);
+			List<Student> students = studentJobService.queryStudent(job.getId());
+			modelMap.put("size", students.size());
+
+			list.add(modelMap);
+		}
+
+		return SuccessHandle.success(list);
+	}
+
+	@RequestMapping(value = "/queryStudent/{jobId}", method = RequestMethod.GET)
+	private Map queryStudent(@PathVariable(value = "jobId") int jobId) {
+
+
+		List<Student> students = studentJobService.queryStudent(jobId);
+
+
+		return SuccessHandle.success(students);
+	}
 
 
 }

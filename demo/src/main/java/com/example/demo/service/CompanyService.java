@@ -46,6 +46,10 @@ public interface CompanyService {
 	 */
 	boolean deleteCompany(int CompanyId);
 
-	Company queryCompanyByNumber(String number,String password);
+    /**
+     * 公司登陆
+     */
+    Company queryCompanyByNumber(String number, String password);
+
 
 }
