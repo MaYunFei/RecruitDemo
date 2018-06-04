@@ -3,6 +3,7 @@ package com.demo.kaiyun.androiddemo.http;
 
 import com.demo.kaiyun.androiddemo.bean.Company;
 import com.demo.kaiyun.androiddemo.bean.Job;
+import com.demo.kaiyun.androiddemo.bean.PostedItem;
 import com.demo.kaiyun.androiddemo.bean.ResultBean;
 import com.demo.kaiyun.androiddemo.bean.School;
 import com.demo.kaiyun.androiddemo.bean.SendedJob;
@@ -24,6 +25,14 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
+
+    @GET("student_job/getStudent/{jobId}")
+    Call<ResultBean<List<Student>>> queryStudentByJobId(@Path("jobId") int jobId);
+
+    @GET("company/queryJobInfo/{companyId}")
+    Call<ResultBean<List<PostedItem>>> queryJobInfoByCompanyId(@Path("companyId") int userId);
+
+
     @GET("company/listCompany")
     Call<ResultBean<List<Company>>> getCompanyList();
 

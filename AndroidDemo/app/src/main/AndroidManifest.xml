@@ -39,9 +39,15 @@
         <activity
             android:name=".ui.student.JobListActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ui.student.JobInfoActivity"
+        <activity
+            android:name=".ui.student.JobInfoActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.company.JobStudentActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.company.StudentInfoActivity"
             android:theme="@style/AppTheme"
-            ></activity>
+            />
     </application>
 
 </manifest>

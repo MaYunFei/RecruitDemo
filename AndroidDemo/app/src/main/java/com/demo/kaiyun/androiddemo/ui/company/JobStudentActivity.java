@@ -1,20 +1,14 @@
 package com.demo.kaiyun.androiddemo.ui.company;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -22,37 +16,36 @@ import android.widget.TextView;
 import com.demo.kaiyun.androiddemo.R;
 import com.demo.kaiyun.androiddemo.base.BaseActivity;
 import com.demo.kaiyun.androiddemo.base.ResponseHandle;
-import com.demo.kaiyun.androiddemo.bean.Company;
-import com.demo.kaiyun.androiddemo.bean.PostedItem;
-import com.demo.kaiyun.androiddemo.ui.student.HomeFragment;
-import com.demo.kaiyun.androiddemo.ui.student.JobListActivity;
-import com.demo.kaiyun.androiddemo.ui.student.MeFragment;
-import com.demo.kaiyun.androiddemo.ui.student.ResumeFragment;
+import com.demo.kaiyun.androiddemo.bean.Student;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompanyMainActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class JobStudentActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
 
-    private Toolbar toolbar;
-    private Company data;
-    List<PostedItem> mPostedList = new ArrayList<>();
+    private int jobId;
+    List<Student> studentList = new ArrayList<>();
     private ArrayList<String> array = new ArrayList<>();
     private RecyclerView mRvMain;
     private SwipeRefreshLayout mRefreshLayout;
     private CardListAdapter adapter;
 
+    public static void startJobStudentActivity(Context context, int jobId){
+        Intent intent = new Intent(context,JobStudentActivity.class);
+        intent.putExtra("data",jobId);
+        context.startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_company_main);
-
-        toolbar = findViewById(R.id.toolbar);
-
-        setSupportActionBar(toolbar);
-        data = ((Company) getIntent().getSerializableExtra("data"));
-        setTitle(data.getName());
+        setContentView(R.layout.activity_job_student);
+        jobId = getIntent().getIntExtra("data", -1);
+        if (jobId == -1){
+            finish();
+            return;
+        }
+        setTitle("投递学生列表");
 
         mRvMain = (RecyclerView) findViewById(R.id.rv_main);
         mRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refreshLayout);
@@ -61,24 +54,33 @@ public class CompanyMainActivity extends BaseActivity implements SwipeRefreshLay
         mRvMain.setLayoutManager(new LinearLayoutManager(this));
         mRvMain.setAdapter(adapter);
         getData();
+
     }
 
+    @Override
+    public void onRefresh() {
+        getData();
+    }
 
     private void getData() {
-        mApiService.queryJobInfoByCompanyId(data.getId()).enqueue(new ResponseHandle<List<PostedItem>>() {
+        mApiService.queryStudentByJobId(jobId).enqueue(new ResponseHandle<List<Student>>() {
             @Override
-            protected void onSuccess(List<PostedItem> data) {
-                mPostedList.clear();
-                mPostedList.addAll(data);
+            protected void onSuccess(List<Student> data) {
+
+                studentList.clear();
+                studentList.addAll(data);
                 array.clear();
-                for (PostedItem postedItem : data) {
-                    array.add(postedItem.getJob().getName() + "\n " + "投递人数 ：" + postedItem.getSize());
+                for (Student student : data) {
+                    array.add("姓名：" +student.getName() + "\n "
+                            + "性别 ：" + student.getSex() + "年龄 ："+ student.getAgo()+ "\n "
+                            +"经验：" +student.getExperience());
                 }
+
+
                 adapter.notifyDataSetChanged();
                 if (mRefreshLayout != null) {
                     mRefreshLayout.setRefreshing(false);
                 }
-
             }
 
             @Override
@@ -89,13 +91,8 @@ public class CompanyMainActivity extends BaseActivity implements SwipeRefreshLay
                 }
             }
         });
-
     }
 
-    @Override
-    public void onRefresh() {
-        getData();
-    }
 
     public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.MyViewHolder> {
         private Context context;
@@ -125,8 +122,8 @@ public class CompanyMainActivity extends BaseActivity implements SwipeRefreshLay
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PostedItem postedItem = mPostedList.get(position);
-                    JobStudentActivity.startJobStudentActivity(v.getContext(),postedItem.getJob().getId());
+                    Student student = studentList.get(position);
+//                    JobStudentActivity.startJobStudentActivity(v.getContext(),postedItem.getJob().getId());
                 }
             });
 
@@ -150,6 +147,4 @@ public class CompanyMainActivity extends BaseActivity implements SwipeRefreshLay
             }
         }
     }
-
-
 }

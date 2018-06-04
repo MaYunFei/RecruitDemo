@@ -1,5 +1,6 @@
 package com.demo.kaiyun.androiddemo.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -85,7 +86,9 @@ public class LoginActivity extends BaseActivity implements RadioGroup.OnCheckedC
                                 protected void onSuccess(Company data) {
                                     SPUtils.setUserId(data.getId());
                                     SPUtils.setType(LoginActivity.TYPE_COMPANY);
-                                    startActivity(CompanyMainActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this,CompanyMainActivity.class);
+                                    intent.putExtra("data",data);
+                                    startActivity(intent);
                                     finish();
                                 }
                             });
